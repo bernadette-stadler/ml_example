@@ -84,6 +84,20 @@ x_1 <- clean %>%
   mutate(prediction = predict(model_1, type = "response")) %>% 
   mutate(pred_dvote = as.factor(ifelse(prediction > mean(prediction), "Yes", "No")))
 
+metrics(x_1, truth = dvote, estimate = pred_dvote)
+
+```
+
+```{r}
+
+model_1 <- glm(data = clean, dvote ~ gender + party, family = "binomial")
+
+x_2 <- clean %>% 
+  mutate(prediction = predict(model_1, type = "response")) %>% 
+  mutate(pred_dvote = as.factor(ifelse(prediction > mean(prediction), "Yes", "No")))
+
+metrics(x_2, truth = dvote, estimate = pred_dvote)
+
 ```
 
 
